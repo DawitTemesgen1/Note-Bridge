@@ -1,0 +1,25 @@
+# ============================================================
+# Security: Disable Script Execution in Uploads Directory
+# ============================================================
+# Prevents any uploaded files from being executed as scripts
+# by Apache / PHP, even if an attacker attempts an exploit.
+# ============================================================
+
+# Treat all files as static files, not scripts
+<Files *>
+    SetHandler default-handler
+</Files>
+
+# Disable PHP engine in this directory
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# Disable CGI execution and directory browsing
+Options -ExecCGI -Indexes
